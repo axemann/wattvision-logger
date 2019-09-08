@@ -27,7 +27,7 @@ definition(
 	namespace: "axemann",
 	author: "Axemann",
 	description: "Push data from an existing energy meter to your Wattvision account",
-    category: "Energy Management",
+    category: "Green Living",
 	// iconUrl: "https://s3.amazonaws.com/smartapp-icons/Partner/wattvision.png",
     iconUrl: "https://github.com/axemann/wattvision-logger/raw/master/smartapps/axemann/wattvision-manager.src/images/wattvision.png",
 	// iconX2Url: "https://s3.amazonaws.com/smartapp-icons/Partner/wattvision%402x.png",
