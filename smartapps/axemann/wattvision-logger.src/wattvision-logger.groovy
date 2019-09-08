@@ -42,7 +42,8 @@ preferences {
         paragraph title: "Note", "Log into your Wattvision account at https://www.wattvision.com/usr/api to retrieve your API ID and API Key, then enter those in the App Settings page under Settings in the SmartThings IDE after completing the SmartApp installation."
     }
 	section ("Log devices") {
-        input "power", "capability.powerMeter", title: "Power Meters", required: true, multiple: false
+        input "power", "capability.powerMeter", title: "Power Meter", required: true, multiple: false
+        input "energy", "capability.energyMeter", title: "Energy Meter", required: false, multiple: false
     }
     section ("Wattvision Sensor ID") {
         input "sensor_id", "text", title: "Wattvision Sensor ID"
@@ -60,21 +61,26 @@ def updated() {
 
 def initialize() {
     subscribe(power, "power", handlePowerEvent)
+    subscribe(energy, "energy", handleEnergyEvent)
 }
 
 def handlePowerEvent(evt) {
-    logField(evt,"power") { it.toString() }
+    logPowerField(evt,"power") { it.toString() }
 }
 
-private logField(evt, field, Closure c) {
+def handleEnergyEvent(evt) {
+    logEnergyField(evt,"energy") { it.toString() }
+}
+
+private logPowerField(evt, field, Closure c) {
     def value = c(evt.value)
     float watts = value.toFloat()
     def api_id = appSettings.api_id
     def api_key = appSettings.api_key
-    def body = '{"sensor_id":"' + "${sensor_id}" + '","api_id":"' + "${api_id}" + '","api_key":"' + "${api_key}" + '","watts":"' + "${watts}" + '"}'
+    //def body = '{"sensor_id":"' + "${sensor_id}" + '","api_id":"' + "${api_id}" + '","api_key":"' + "${api_key}" + '","watts":"' + "${watts}" + '"}'
 	def uri = "https://www.wattvision.com/api/v0.2/elec"
 	
-    def params = [
+    def powerparams = [
             uri: uri,
             body: [
             sensor_id: sensor_id,
@@ -85,14 +91,45 @@ private logField(evt, field, Closure c) {
         ]
     
     try {
-        httpPostJson(params) { resp ->
+        httpPostJson(powerparams) { resp ->
             resp.headers.each {
             }
-            log.info "Sending data to Wattvision:  ${params.body.watts}W"
+            log.info "Sending power data to Wattvision:  ${powerparams.body.watts}W"
             log.info "Wattvision server response: ${resp.data}"
         }
     } catch (e) {
-    	log.debug "Data sent: ${body} to ${uri}"
+    	log.debug "Data sent: ${powerparams.body} to ${powerparams.uri}"
+        log.debug "something went wrong: $e"
+    }
+}
+
+private logEnergyField(evt, field, Closure c) {
+    def value = c(evt.value)
+    float watthours = value.toFloat()
+    def api_id = appSettings.api_id
+    def api_key = appSettings.api_key
+    //def body = '{"sensor_id":"' + "${sensor_id}" + '","api_id":"' + "${api_id}" + '","api_key":"' + "${api_key}" + '","watts":"' + "${watts}" + '"}'
+	def uri = "https://www.wattvision.com/api/v0.2/elec"
+	
+    def params = [
+            uri: uri,
+            body: [
+            sensor_id: sensor_id,
+            api_id: api_id,
+            api_key: api_key,
+            watthours: watthours
+            ]
+        ]
+    
+    try {
+        httpPostJson(params) { resp ->
+            resp.headers.each {
+            }
+            log.info "Sending energy data to Wattvision:  ${params.body.watthours}kWh"
+            log.info "Wattvision server response: ${resp.data}"
+        }
+    } catch (e) {
+    	log.debug "Data sent: ${params.body} to ${params.uri}"
         log.debug "something went wrong: $e"
     }
 }
