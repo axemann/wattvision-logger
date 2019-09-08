@@ -16,6 +16,7 @@
  *  Creation Date: 2019-09-07
  *
  *  Revision history:
+ *      2019-09-08 - Updated config page, moved api_id and api_key to IDE Settings, fix smartphone icon issues, code cleanup
  *      2019-09-07 - Initial commit and bugfixes
  */
  
@@ -28,9 +29,7 @@ definition(
 	author: "Axemann",
 	description: "Pushes data from an existing energy meter to your Wattvision account",
     category: "Green Living",
-	//iconUrl: "https://s3.amazonaws.com/smartapp-icons/Partner/wattvision.png",
     iconUrl: "https://github.com/axemann/wattvision-logger/raw/master/smartapps/axemann/wattvision-logger.src/images/wattvision.png",
-	// iconX2Url: "https://s3.amazonaws.com/smartapp-icons/Partner/wattvision%402x.png",
     iconX2Url: "https://github.com/axemann/wattvision-logger/raw/master/smartapps/axemann/wattvision-logger.src/images/wattvision@2x.png",
     iconX3Url: "https://github.com/axemann/wattvision-logger/raw/master/smartapps/axemann/wattvision-logger.src/images/wattvision@2x.png",
 ) {
@@ -48,18 +47,7 @@ preferences {
     section ("Wattvision Sensor ID") {
         input "sensor_id", "text", title: "Wattvision Sensor ID"
     }
-    // section ("Wattvision API ID") {
-    //     input "api_id", "text", title: "Wattvision API ID"
-    // }
-    // section ("Wattvision API Key") {
-    //     input "api_key", "text", title: "Wattvision API Key"
-    // }
 }
-// preferences {
-//     page(name: "landing_page", title: "App Status", nextPage: "sensor", uninstall: true) {
-//         section("Tap Next to view or configure settings")
-//     }
-// }
 
 def installed() {
     initialize()
