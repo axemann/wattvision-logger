@@ -42,7 +42,7 @@ preferences {
         paragraph title: "Note", "Log into your Wattvision account at https://www.wattvision.com/usr/api to retrieve your API ID and API Key, then enter those in the App Settings page under Settings in the SmartThings IDE after completing the SmartApp installation."
     }
 	section ("Log devices") {
-        input "power", "capability.powerMeter", title: "Power Meters", required: false, multiple: false
+        input "power", "capability.powerMeter", title: "Power Meters", required: true, multiple: false
     }
     section ("Wattvision Sensor ID") {
         input "sensor_id", "text", title: "Wattvision Sensor ID"
