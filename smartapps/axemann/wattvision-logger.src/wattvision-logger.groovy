@@ -26,29 +26,39 @@ definition(
 	name: "Wattvision Logger",
 	namespace: "axemann",
 	author: "Axemann",
-	description: "Push data from an existing energy meter to your Wattvision account",
+	description: "Pushes data from an existing energy meter to your Wattvision account",
     category: "Green Living",
-	iconUrl: "https://s3.amazonaws.com/smartapp-icons/Partner/wattvision.png",
-    //iconUrl: "https://github.com/axemann/wattvision-logger/raw/master/smartapps/axemann/wattvision-logger.src/images/wattvision.png",
-	iconX2Url: "https://s3.amazonaws.com/smartapp-icons/Partner/wattvision%402x.png",
-    //iconX2Url: "https://github.com/axemann/wattvision-logger/raw/master/smartapps/axemann/wattvision-logger.src/images/wattvision2x.png",
-	//oauth: [displayName: "Wattvision", displayLink: "https://www.wattvision.com/"]
-)
+	//iconUrl: "https://s3.amazonaws.com/smartapp-icons/Partner/wattvision.png",
+    iconUrl: "https://github.com/axemann/wattvision-logger/raw/master/smartapps/axemann/wattvision-logger.src/images/wattvision.png",
+	// iconX2Url: "https://s3.amazonaws.com/smartapp-icons/Partner/wattvision%402x.png",
+    iconX2Url: "https://github.com/axemann/wattvision-logger/raw/master/smartapps/axemann/wattvision-logger.src/images/wattvision%402x.png",
+) {
+    appSetting "api_id"
+    appSetting "api_key"
+}
 
 preferences {
+    section () {
+        paragraph title: "Note", "Log into your Wattvision account at https://www.wattvision.com/usr/api to retrieve your API ID and API Key, then enter those in the App Settings page under Settings in the SmartThings IDE after completing the SmartApp installation."
+    }
 	section ("Log devices") {
         input "power", "capability.powerMeter", title: "Power Meters", required: false, multiple: false
     }
     section ("Wattvision Sensor ID") {
         input "sensor_id", "text", title: "Wattvision Sensor ID"
     }
-    section ("Wattvision API ID") {
-        input "api_id", "text", title: "Wattvision API ID"
-    }
-    section ("Wattvision API Key") {
-        input "api_key", "text", title: "Wattvision API Key"
-    }
+    // section ("Wattvision API ID") {
+    //     input "api_id", "text", title: "Wattvision API ID"
+    // }
+    // section ("Wattvision API Key") {
+    //     input "api_key", "text", title: "Wattvision API Key"
+    // }
 }
+// preferences {
+//     page(name: "landing_page", title: "App Status", nextPage: "sensor", uninstall: true) {
+//         section("Tap Next to view or configure settings")
+//     }
+// }
 
 def installed() {
     initialize()
@@ -70,6 +80,8 @@ def handlePowerEvent(evt) {
 private logField(evt, field, Closure c) {
     def value = c(evt.value)
     float watts = value.toFloat()
+    def api_id = appSettings.api_id
+    def api_key = appSettings.api_key
     def body = '{"sensor_id":"' + "${sensor_id}" + '","api_id":"' + "${api_id}" + '","api_key":"' + "${api_key}" + '","watts":"' + "${watts}" + '"}'
 	def uri = "https://www.wattvision.com/api/v0.2/elec"
 	
