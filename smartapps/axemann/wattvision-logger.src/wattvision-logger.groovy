@@ -41,7 +41,7 @@ definition(
 
 preferences {
 	section ("Log devices") {
-        input "power", "capability.powerMeter", title: "Power Meters", required: false, multiple: true
+        input "power", "capability.powerMeter", title: "Power Meters", required: false, multiple: false
     }
     section ("Wattvision Sensor ID") {
         input "sensor_id", "text", title: "Wattvision Sensor ID"
