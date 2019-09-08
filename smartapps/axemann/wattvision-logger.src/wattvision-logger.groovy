@@ -91,8 +91,8 @@ private logField(evt, field, Closure c) {
         httpPostJson(params) { resp ->
             resp.headers.each {
             }
-            log.debug "Sending data to Wattvision:  ${params.body.watts}W"
-            log.debug "Wattvision server response: ${resp.data}"
+            log.info "Sending data to Wattvision:  ${params.body.watts}W"
+            log.info "Wattvision server response: ${resp.data}"
         }
     } catch (e) {
     	log.debug "Data sent: ${body} to ${uri}"
