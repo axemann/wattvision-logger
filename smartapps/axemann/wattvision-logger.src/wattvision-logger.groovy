@@ -31,7 +31,8 @@ definition(
 	//iconUrl: "https://s3.amazonaws.com/smartapp-icons/Partner/wattvision.png",
     iconUrl: "https://github.com/axemann/wattvision-logger/raw/master/smartapps/axemann/wattvision-logger.src/images/wattvision.png",
 	// iconX2Url: "https://s3.amazonaws.com/smartapp-icons/Partner/wattvision%402x.png",
-    iconX2Url: "https://github.com/axemann/wattvision-logger/raw/master/smartapps/axemann/wattvision-logger.src/images/wattvision%402x.png",
+    iconX2Url: "https://github.com/axemann/wattvision-logger/raw/master/smartapps/axemann/wattvision-logger.src/images/wattvision@2x.png",
+    iconX3Url: "https://github.com/axemann/wattvision-logger/raw/master/smartapps/axemann/wattvision-logger.src/images/wattvision@2x.png",
 ) {
     appSetting "api_id"
     appSetting "api_key"
