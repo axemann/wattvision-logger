@@ -16,7 +16,7 @@
  *  Creation Date: 2019-09-07
  *
  *  Revision history:
- *      2019-09-08 - Updated config page, moved api_id and api_key to IDE Settings, fix smartphone icon issues, code cleanup
+ *      2019-09-08 - Updated config page, moved api_id and api_key to IDE Settings, fix smartphone icon issues, fix device requirements, code cleanup
  *      2019-09-07 - Initial commit and bugfixes
  */
  
