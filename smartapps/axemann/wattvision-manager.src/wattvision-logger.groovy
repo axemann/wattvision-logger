@@ -27,9 +27,11 @@ definition(
 	namespace: "axemann",
 	author: "Axemann",
 	description: "Push data from an existing energy meter to your Wattvision account",
-	iconUrl: "https://s3.amazonaws.com/smartapp-icons/Partner/wattvision.png",
-	iconX2Url: "https://s3.amazonaws.com/smartapp-icons/Partner/wattvision%402x.png",
-	oauth: [displayName: "Wattvision", displayLink: "https://www.wattvision.com/"]
+	// iconUrl: "https://s3.amazonaws.com/smartapp-icons/Partner/wattvision.png",
+    iconUrl: "https://github.com/axemann/wattvision-logger/raw/master/smartapps/axemann/wattvision-manager.src/images/wattvision.png",
+	// iconX2Url: "https://s3.amazonaws.com/smartapp-icons/Partner/wattvision%402x.png",
+    iconX2Url: "https://github.com/axemann/wattvision-logger/raw/master/smartapps/axemann/wattvision-manager.src/images/wattvision2x.png",
+	//oauth: [displayName: "Wattvision", displayLink: "https://www.wattvision.com/"]
 ) {
     appSetting "sensor_id"
     appSetting "api_id"
