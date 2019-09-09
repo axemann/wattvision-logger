@@ -77,6 +77,7 @@ private logPowerField(evt, field, Closure c) {
     float watts = value.toFloat()
     def api_id = appSettings.api_id
     def api_key = appSettings.api_key
+    def now = new Date().format("yyyy-MM-dd'T'HH:mm:ss")
     //def body = '{"sensor_id":"' + "${sensor_id}" + '","api_id":"' + "${api_id}" + '","api_key":"' + "${api_key}" + '","watts":"' + "${watts}" + '"}'
 	def uri = "https://www.wattvision.com/api/v0.2/elec"
 	
@@ -86,6 +87,7 @@ private logPowerField(evt, field, Closure c) {
             sensor_id: sensor_id,
             api_id: api_id,
             api_key: api_key,
+            time: now,
             watts: watts
             ]
         ]
@@ -108,7 +110,8 @@ private logEnergyField(evt, field, Closure c) {
     float watthours = value.toFloat()
     def api_id = appSettings.api_id
     def api_key = appSettings.api_key
-    //def body = '{"sensor_id":"' + "${sensor_id}" + '","api_id":"' + "${api_id}" + '","api_key":"' + "${api_key}" + '","watts":"' + "${watts}" + '"}'
+    def now = new Date().format("yyyy-MM-dd'T'HH:mm:ss")
+//def body = '{"sensor_id":"' + "${sensor_id}" + '","api_id":"' + "${api_id}" + '","api_key":"' + "${api_key}" + '","watts":"' + "${watts}" + '"}'
 	def uri = "https://www.wattvision.com/api/v0.2/elec"
 	
     def params = [
@@ -117,6 +120,7 @@ private logEnergyField(evt, field, Closure c) {
             sensor_id: sensor_id,
             api_id: api_id,
             api_key: api_key,
+            time: now,
             watthours: watthours
             ]
         ]
