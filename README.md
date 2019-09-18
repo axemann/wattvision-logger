@@ -4,7 +4,7 @@
 
 ## Description
 
-Wattvision Logger is a SmartApp for [SmartThings](https://www.smartthings.com/) that allows for the upload of both power (watts) and energy (kilowatt-hours) data to the [Wattvision](https://www.wattvision.com) service.
+Wattvision Logger is a SmartApp for [SmartThings](https://www.smartthings.com/) that allows for the upload of both power (watts) and energy (watt-hours) data to the [Wattvision](https://www.wattvision.com) service.
 
 ## Installation
 
