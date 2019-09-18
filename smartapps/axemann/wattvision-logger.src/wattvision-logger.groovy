@@ -129,7 +129,7 @@ private logEnergyField(evt, field, Closure c) {
         httpPostJson(params) { resp ->
             resp.headers.each {
             }
-            log.info "Sending energy data to Wattvision:  ${params.body.watthours}kWh"
+            log.info "Sending energy data to Wattvision:  ${params.body.watthours}Wh"
             log.info "Wattvision server response: ${resp.data}"
         }
     } catch (e) {
