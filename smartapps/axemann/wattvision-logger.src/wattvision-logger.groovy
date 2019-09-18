@@ -107,7 +107,7 @@ private logPowerField(evt, field, Closure c) {
 
 private logEnergyField(evt, field, Closure c) {
     def value = c(evt.value)
-    float watthours = value.toFloat()
+    float watthours = (value.toFloat() * 1000)
     def api_id = appSettings.api_id
     def api_key = appSettings.api_key
     def now = new Date().format("yyyy-MM-dd'T'HH:mm:ss")
