@@ -16,6 +16,7 @@
  *  Creation Date: 2019-09-07
  *
  *  Revision history:
+ *      2019-09-17 - Fix energy reporting units (kWh -> Wh), code cleanup
  *      2019-09-08 - Add energy (kWh) reporting, update config page, moved api_id and api_key to IDE Settings, fix smartphone icon issues, fix device requirements, code cleanup
  *      2019-09-07 - Initial commit and bugfixes
  */
@@ -78,7 +79,6 @@ private logPowerField(evt, field, Closure c) {
     def api_id = appSettings.api_id
     def api_key = appSettings.api_key
     def now = new Date().format("yyyy-MM-dd'T'HH:mm:ss")
-    //def body = '{"sensor_id":"' + "${sensor_id}" + '","api_id":"' + "${api_id}" + '","api_key":"' + "${api_key}" + '","watts":"' + "${watts}" + '"}'
 	def uri = "https://www.wattvision.com/api/v0.2/elec"
 	
     def powerparams = [
@@ -111,7 +111,6 @@ private logEnergyField(evt, field, Closure c) {
     def api_id = appSettings.api_id
     def api_key = appSettings.api_key
     def now = new Date().format("yyyy-MM-dd'T'HH:mm:ss")
-//def body = '{"sensor_id":"' + "${sensor_id}" + '","api_id":"' + "${api_id}" + '","api_key":"' + "${api_key}" + '","watts":"' + "${watts}" + '"}'
 	def uri = "https://www.wattvision.com/api/v0.2/elec"
 	
     def params = [
